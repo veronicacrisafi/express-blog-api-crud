@@ -31,6 +31,7 @@ const app = express();
 //console.log(app);
 const port = 3000;
 const postRouter = require("./routers/post");
+
 app.use(express.static("public"));
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const post = [
+/* const post = [
   {
     id: 1,
     titolo: "Il ciambellone",
@@ -41,8 +41,8 @@ const post = [
     immagine: "imgs/torta_paesana.jpeg",
     tags: ["blog", "torta", "pane", "latte"],
   },
-];
-
+]; */
+const post = require("../data/postData");
 //operazioni CRUD
 //index(R) con implementazione
 router.get("/api/post", (req, res) => {
