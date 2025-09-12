@@ -30,7 +30,7 @@ const express = require("express");
 const app = express();
 //console.log(app);
 const port = 3000;
-
+const postRouter = require("./routers/post");
 app.use(express.static("public"));
 
 app.listen(port, () => {
@@ -87,7 +87,10 @@ app.get("/post", (req, res) => {
   res.json(post);
 });
 
-//operazioni CRUD
+app.use("/api/post", postRouter);
+
+/* //operazioni CRUD
+
 //index(R) con implementazione
 app.get("/api/post", (req, res) => {
   //res.json(post);
@@ -136,3 +139,4 @@ app.delete("/api/post/:id", (req, res) => {
   post.splice(post.indexOf(postEl), 1);
   res.sendStatus(204);
 });
+ */
