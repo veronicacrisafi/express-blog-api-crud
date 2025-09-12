@@ -43,9 +43,13 @@ const router = express.Router();
   },
 ]; */
 const post = require("../data/postData");
+const postController = require("../controllers/postController");
 //operazioni CRUD
 //index(R) con implementazione
-router.get("/api/post", (req, res) => {
+router.get(
+  "/",
+  postController.index
+  /*"/api/post"  (req, res) => {
   //res.json(post);
   //console.log(req.query.tags);
   let filtraPost = post;
@@ -53,10 +57,14 @@ router.get("/api/post", (req, res) => {
     filtraPost = post.filter((postEl) => postEl.tags.includes(req.query.tags));
   }
   res.json(filtraPost);
-});
+} */
+);
 
 //show(R) con implementazione
-router.get("api/post/:id", (req, res) => {
+router.get(
+  "/:id",
+  postController.show
+  /* "api/post/:id" (req, res) => {
   const { id } = req.params;
   const postEl = post.find((singlePost) => singlePost.id === parseInt(id));
   if (!postEl) {
@@ -66,21 +74,37 @@ router.get("api/post/:id", (req, res) => {
     });
   }
   res.send(postEl);
-});
+} */
+);
 //store(C)
-router.post("/api/post", (req, res) => {
+router.post(
+  "/",
+  postController.store
+  /*"/api/post"  (req, res) => {
   res.send("Crea un nuovo post");
-});
+} */
+);
 //update(U)
-router.put("/api/post/:id", (req, res) => {
+router.put(
+  "/:id",
+  postController.update
+  /* "/api/post/:id"  (req, res) => {
   res.send("Modifica il post con id:" + req.params.id);
-});
+} */
+);
 //modify(U)
-router.patch("/api/post/:id", (req, res) => {
+router.patch(
+  "/:id",
+  postController.modify
+  /* "/api/post/:id" (req, res) => {
   res.send("Modifica parzialmente il post con id:" + req.params.id);
-});
+} */
+);
 //destroy(D)
-router.delete("/api/post/:id", (req, res) => {
+router.delete(
+  "/:id",
+  postController.destroy
+  /*"/api/post/:id"  (req, res) => {
   const { id } = req.params;
   const postEl = post.find((singlePost) => singlePost.id === parseInt(id));
   if (!postEl) {
@@ -91,6 +115,7 @@ router.delete("/api/post/:id", (req, res) => {
   }
   post.splice(post.indexOf(postEl), 1);
   res.sendStatus(204);
-});
+} */
+);
 
 module.exports = router;
