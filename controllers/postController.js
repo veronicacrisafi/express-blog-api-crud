@@ -23,11 +23,40 @@ const show = (req, res) => {
 };
 
 const store = (req, res) => {
-  res.send("Crea un nuovo post");
+  //implementazione
+  //gli dco di trovarmi l'ultimo id -1 e per crearne uno nuovo +1
+  const newPostId = post[post.length - 1].id + 1;
+  //destrutturo prendendo tutte le chiavi dell'oggetto che mi servono per crearne un altro
+  const { titolo, contenuto, immagine, tags } = req.body;
+  //genero l'oggetto
+  const newpost = {
+    id: newPostId,
+    titolo,
+    contenuto,
+    immagine,
+    tags,
+  };
+  post.push(newpost);
+  res.status(201).json(newpost);
+  //res.send("Crea un nuovo post");
 };
 
 const update = (req, res) => {
-  res.send("Modifica il post con id:" + req.params.id);
+  const { id } = req.params;
+  const post = post.find((postEl) => postEl.id === parseInt(id));
+  if (!post) {
+    return res.status(404).json({
+      error: "not found",
+      message: "resource not found",
+    });
+  }
+  const { titolo, contenuto, immagine, tags } = req.body;
+  post.titolo = titolo;
+  post.contenuto = contenuto;
+  post.immagine = immagine;
+  post.tags = tags;
+  res.send(post);
+  //res.send("Modifica il post con id:" + req.params.id);
 };
 
 const modify = (req, res) => {
