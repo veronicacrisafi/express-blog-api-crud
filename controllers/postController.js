@@ -43,19 +43,19 @@ const store = (req, res) => {
 
 const update = (req, res) => {
   const { id } = req.params;
-  const post = post.find((postEl) => postEl.id === parseInt(id));
-  if (!post) {
+  const postEl = post.find((postEl) => postEl.id === parseInt(id));
+  if (!postEl) {
     return res.status(404).json({
       error: "not found",
       message: "resource not found",
     });
   }
   const { titolo, contenuto, immagine, tags } = req.body;
-  post.titolo = titolo;
-  post.contenuto = contenuto;
-  post.immagine = immagine;
-  post.tags = tags;
-  res.send(post);
+  postEl.titolo = titolo;
+  postEl.contenuto = contenuto;
+  postEl.immagine = immagine;
+  postEl.tags = tags;
+  res.send(postEl);
   //res.send("Modifica il post con id:" + req.params.id);
 };
 

@@ -33,7 +33,7 @@ const port = 3000;
 const postRouter = require("./routers/postRouter");
 //inserisco la funzionalità di express --> express.json() per far funzionare le implementazioni di store e update che devono darmi un responso in json
 app.use(express.json());
-
+//asset statico
 app.use(express.static("public"));
 
 app.listen(port, () => {
