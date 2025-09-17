@@ -31,6 +31,8 @@ const app = express();
 //console.log(app);
 const port = 3000;
 const postRouter = require("./routers/postRouter");
+const serverError = require("./middleware/serverError");
+const notFound = require("./middleware/notFound");
 //inserisco la funzionalità di express --> express.json() per far funzionare le implementazioni di store e update che devono darmi un responso in json
 app.use(express.json());
 //asset statico
@@ -92,6 +94,8 @@ app.get("/post", (req, res) => {
 
 app.use("/api/post", postRouter);
 
+app.use(serverError);
+app.use(notFound);
 /* //operazioni CRUD
 
 //index(R) con implementazione

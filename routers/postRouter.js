@@ -44,6 +44,7 @@ const router = express.Router();
 ]; */
 const post = require("../data/postData");
 const postController = require("../controllers/postController");
+const validaDati = require("../middleware/validaDati");
 //operazioni CRUD
 //index(R) con implementazione
 router.get(
@@ -79,6 +80,7 @@ router.get(
 //store(C)
 router.post(
   "/",
+  validaDati,
   postController.store
   /*"/api/post"  (req, res) => {
   res.send("Crea un nuovo post");
@@ -87,6 +89,7 @@ router.post(
 //update(U)
 router.put(
   "/:id",
+  validaDati,
   postController.update
   /* "/api/post/:id"  (req, res) => {
   res.send("Modifica il post con id:" + req.params.id);
@@ -95,6 +98,7 @@ router.put(
 //modify(U)
 router.patch(
   "/:id",
+  validaDati,
   postController.modify
   /* "/api/post/:id" (req, res) => {
   res.send("Modifica parzialmente il post con id:" + req.params.id);
