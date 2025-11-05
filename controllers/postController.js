@@ -1,13 +1,21 @@
 const post = require("../data/postData");
+const connection = require("../database/connection");
 
 const index = (req, res) => {
   //res.json(post);
   //console.log(req.query.tags);
-  let filtraPost = post;
+  /*   let filtraPost = post;
   if (req.query.tags) {
     filtraPost = post.filter((postEl) => postEl.tags.includes(req.query.tags));
   }
-  res.json(filtraPost);
+  res.json(filtraPost); */
+  const sql = "SELECT * FROM db_blog.posts;";
+  connection.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    console.log(err);
+    console.log(results);
+    res.json(results);
+  });
 };
 
 const show = (req, res) => {
